@@ -8,6 +8,8 @@ public class shape : MonoBehaviour
 
     private Animator anim;
 
+    private AudioSource audio;
+
     public Grinch sac ;
     public level spawn;
     
@@ -16,6 +18,7 @@ public class shape : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
         
     }
 
@@ -31,7 +34,7 @@ public class shape : MonoBehaviour
     {
         if (CompareTag("shape")&& sac.sacGrinch==true)
         {
-                    
+            audio.Play();
             anim.SetTrigger("isGettingOpen");
             sac.sacGrinch=false;     
             sac.cadeauCatching.SetActive(false);    

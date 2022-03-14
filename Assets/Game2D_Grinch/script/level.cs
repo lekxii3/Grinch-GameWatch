@@ -24,13 +24,17 @@ public class level : MonoBehaviour
     
     public GameObject gagne;
     public GameObject[] life;
+
+    public GameObject menu;
+    private bool menuBool = false;
+
+    
     
 
     void Start()
     {
         indexArrayVectorCadeau=0;
-        StartCoroutine(spawncadeau());
-       
+        StartCoroutine(spawncadeau());      
         
     }
 
@@ -42,8 +46,10 @@ public class level : MonoBehaviour
         // {
         //     perdu.SetActive(true);
         // }
-
+        showMenu();
         
+        
+       
     }
    
     
@@ -71,6 +77,37 @@ public class level : MonoBehaviour
     }
         
 
+        /// affichage menu 
+        public void showMenu()
+        {
+            if(Input.GetKeyDown(KeyCode.Escape) && menuBool == false)
+            {
+                Time.timeScale = 0;
+                menuBool = true;           
+                menu.SetActive(true);                  
+            }
+
+            else if(Input.GetKeyDown(KeyCode.Escape)&& menuBool == true)
+            {
+                Time.timeScale = 1;
+                menuBool = false;
+                menu.SetActive(false);                
+            }
+        }
+
+    ///recommencer le niveau
+    public void Reload()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
+    ///reprendre le jeu
+    public void Reprendre()
+    {
+        Time.timeScale = 1;
+        menuBool = false;
+        menu.SetActive(false);    
+    }
 
 
 
